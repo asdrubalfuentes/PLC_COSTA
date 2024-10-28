@@ -139,7 +139,7 @@ int main(void) {
     DMA_Cmd(DMA1_Channel1, ENABLE);
     ADC_RegularChannelConfig(ADC1, ADC_Channel_1, 1, ADC_SampleTime_239Cycles5);
     ADC_SoftwareStartConvCmd(ADC1, ENABLE);
-    printf("GPIO Toggle TEST\r\n");
+    //printf("GPIO Toggle TEST\r\n");
     while(1)
     {
         contador++;

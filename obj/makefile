@@ -48,7 +48,7 @@ all: PLC_COSTA.elf secondary-outputs
 PLC_COSTA.elf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GNU RISC-V Cross C Linker'
-	riscv-none-embed-gcc -march=rv32imac -mabi=ilp32 -msmall-data-limit=8 -msave-restore -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common -Wunused -Wuninitialized  -g -T "/home/asdrubal/mrs_community-workspace/PLC_COSTA/Ld/Link.ld" -nostartfiles -Xlinker --gc-sections -Wl,-Map,"PLC_COSTA.map" --specs=nano.specs --specs=nosys.specs -o "PLC_COSTA.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	riscv-none-embed-gcc -march=rv32imac -mabi=ilp32 -msmall-data-limit=8 -msave-restore -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common -Wunused -Wuninitialized  -g -T "C:\MRS_DATA\workspace\PLC_COSTA\Ld\Link.ld" -nostartfiles -Xlinker --gc-sections -Wl,-Map,"PLC_COSTA.map" --specs=nano.specs --specs=nosys.specs -o "PLC_COSTA.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
