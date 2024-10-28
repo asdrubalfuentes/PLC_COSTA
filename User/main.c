@@ -19,12 +19,12 @@ s16 Calibrattion_Val = 0;
 void GPIO_Toggle_INIT(void) {
     GPIO_InitTypeDef GPIO_InitStructure = { 0 };
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_15;
+    GPIO_InitStructure.GPIO_Pin = LED1;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(GPIOA, &GPIO_InitStructure);
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4;
+    GPIO_InitStructure.GPIO_Pin = LED2;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(GPIOB, &GPIO_InitStructure);
@@ -147,15 +147,15 @@ int main(void) {
         // ADC_SoftwareStartConvCmd(ADC1, ENABLE);
         printf("[Conversion N..%d]   ", contador);
         u32 sumaConversion = 0;
-        for(i = 0; i < MaxConversion; i++)
+        for(int u = 0; u < MaxConversion; u++)
         {
-            sumaConversion += Get_ConversionVal(TxBuf[i]);
+            sumaConversion += Get_ConversionVal(TxBuf[u]);
         }
         // No es necesario detener la conversi¨®n ya que el DMA est¨¢ en modo circular
         u32 valorConvertidoPromedio = sumaConversion / MaxConversion;
         printf("Valor Convertido = %d\r\n", valorConvertidoPromedio);
-        GPIO_WriteBit(GPIOA, GPIO_Pin_15, (i == 0) ? (i = Bit_SET) : (i = Bit_RESET));
-        GPIO_WriteBit(GPIOB, GPIO_Pin_4, !i);
+        GPIO_WriteBit(GPIOA, LED1, (i == 0) ? (i = Bit_SET) : (i = Bit_RESET));
+        GPIO_WriteBit(GPIOB, LED2, !i);
         Delay_Ms(100);
     }
 }
